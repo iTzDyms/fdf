@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2014/02/21 16:18:16 by cheron           ###   ########.fr        #
+#    Updated: 2014/02/21 16:56:56 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ INCLUDES_DIR = ./libft/includes
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-NAME = ft_minishell
+NAME = fdf
 
 OBJ_DIR = obj
 SRC_DIR = srcs
@@ -35,6 +35,9 @@ SRC = 	main.c \
 OBJ = $(SRC:.c=.o)
 POBJ = $(addprefix $(OBJ_DIR)/, $(OBJ))
 
+MLX_DIR = /usr/X11/lib
+MLX_LIB = -lmlx -lXext -lX11
+
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
 $(LIBFT):
@@ -44,7 +47,8 @@ $(LIBFT):
 $(NAME): $(POBJ) $(LIBFT)
 	@echo "\nLinking "$(NAME)""
 	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $^ \
-	-L$(LIBFT_DIR) -lft -I$(INCLUDES_DIR)
+	-L$(LIBFT_DIR) -lft -lft -L$(MLX_DIR) $(MLX_LIB) \
+	-I$(INCLUDES_DIR)
 	@echo "\n\x1b[32;01mdone!\x1b[0m"
 
 clean:

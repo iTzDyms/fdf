@@ -6,17 +6,17 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/20 13:55:15 by cheron            #+#    #+#             */
-/*   Updated: 2013/12/22 18:05:32 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/21 16:52:36 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <mlx.h>
-#include <fdf.h>
 #include <libft.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "fdf.h"
 
 void	ft_get_coord(int x, int y, int z, t_coord *coord)
 {

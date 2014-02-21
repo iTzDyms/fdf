@@ -6,12 +6,12 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 15:02:51 by cheron            #+#    #+#             */
-/*   Updated: 2013/12/22 19:24:38 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/21 16:52:20 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <fdf.h>
+#include "fdf.h"
 
 t_dlst	*ft_dlstnew(int content, t_dlst *left, t_dlst *up)
 {

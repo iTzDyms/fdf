@@ -6,14 +6,14 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 14:47:13 by cheron            #+#    #+#             */
-/*   Updated: 2013/12/22 19:35:08 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/21 16:52:49 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
 #include <get_next_line.h>
 #include <stdlib.h>
 #include <libft.h>
+#include "fdf.h"
 
 static void		ft_parse_line(char *line, t_dlst **left, t_dlst *up);
 static int		ft_get_nbr(char *line, int *i);
