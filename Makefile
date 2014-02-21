@@ -6,54 +6,62 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2013/12/22 17:34:05 by cheron           ###   ########.fr        #
+#    Updated: 2014/02/21 16:18:16 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-export CC = gcc
-export CFLAGS = -Wall -Werror -Wextra
-export OFLAGS = -O3
-export RM = rm -rf
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+OFLAGS = -03
+RM = @rm -rf
 
 LIBFT_DIR = ./libft
-MLX_DIR = /usr/X11/lib
-MLX_LIB = -lmlx -lXext -lX11
 
 INCLUDES_DIR = ./libft/includes
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-NAME = fdf
+NAME = ft_minishell
 
+OBJ_DIR = obj
+SRC_DIR = srcs
 
 SRC = 	main.c \
+		ft_bresenham.c \
 		ft_create_lst.c \
 		ft_dlstnew.c \
 		ft_print_dlst.c \
-		ft_bresenham.c \
 
 OBJ = $(SRC:.c=.o)
+POBJ = $(addprefix $(OBJ_DIR)/, $(OBJ))
 
-
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
 $(LIBFT):
+	@echo "\nCompilation of objects for "$(LIBFT)
 	@($(MAKE) -C $(LIBFT_DIR))
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX_LIB) -I$(INCLUDES_DIR)
+$(NAME): $(POBJ) $(LIBFT)
+	@echo "\nLinking "$(NAME)""
+	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $^ \
+	-L$(LIBFT_DIR) -lft -I$(INCLUDES_DIR)
+	@echo "\n\x1b[32;01mdone!\x1b[0m"
 
 clean:
-	@($(MAKE) $@ -C $(LIBFT_DIR))
-	$(RM) $(OBJ)
+	@echo "\nCleaning OBJ"
+	$(RM) $(POBJ)
 
 fclean: clean
+	@echo "\nCleaning "$(NAME)""
 	$(RM) $(NAME)
 	@($(MAKE) $@ -C $(LIBFT_DIR))
 
 re: fclean all
 
-%.o: %.c $(INCLUDES_DIR)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INCLUDES_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES_DIR)
+	@$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INCLUDES_DIR)
+
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
 
 .PHONY: all clean re fclean
